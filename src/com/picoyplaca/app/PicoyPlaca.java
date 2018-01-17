@@ -10,17 +10,17 @@ public class PicoyPlaca {
 
 	public static void main(String[] args) {
 		System.out.println("Write the plate:");
-		Scanner inputPlate = new Scanner(System.in);
+		Scanner scanner = new Scanner(System.in);
+		Scanner inputPlate = scanner;
 		Vehicle inputVehicle = new Vehicle(""+inputPlate.nextLine());
 		System.out.println("Write the date as yyyy/mm/dd:");
-		Scanner inputDate = new Scanner(System.in);
+		Scanner inputDate = scanner;
 		String inputDateString = ""+inputDate.nextLine();
 		System.out.println("Write the hour as from 0 to 23:");
-		Scanner inputHour = new Scanner(System.in);
+		Scanner inputHour = scanner;
 		int inputHourtInt = Integer.parseInt(""+inputHour.nextLine());
 		System.out.println("Write the minutes as from 0 to 59:");		
-		Scanner inputMinute = new Scanner(System.in);
-		int inputMinuteInt = Integer.parseInt(""+inputMinute.nextLine());
+		int inputMinuteInt = Integer.parseInt(""+scanner.nextLine());
 		
 		CanBeOnRoad test = new CanBeOnRoad(inputVehicle, inputDateString, new GregorianCalendar(0, 0, 0, inputHourtInt, inputMinuteInt, 0));
 		
