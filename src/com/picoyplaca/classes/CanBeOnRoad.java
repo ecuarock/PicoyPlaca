@@ -60,7 +60,8 @@ public class CanBeOnRoad {
 		}		
 	}
 
-	public boolean Predictor() {		
+	public boolean Predictor() {
+		boolean avaibleForRoad = false;
 		DateFormat format = new SimpleDateFormat("yyyy/MM/dd");
 		Date inputdate = null;
 		try {
@@ -71,34 +72,80 @@ public class CanBeOnRoad {
 		}
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTime(inputdate);
-
+		
 		switch (calendar.get(Calendar.DAY_OF_WEEK)) {
-		case 2:
-
+		case 2:			
+			if(this.PlateToNotCirculation("1", "2"))
+			{
+				avaibleForRoad = this.HourToNotCirculation();				
+			}
 			break;
 
 		case 3:
-
+			if(this.PlateToNotCirculation("3", "4"))
+			{
+				avaibleForRoad = this.HourToNotCirculation();				
+			}
 			break;
 
 		case 4:
-
+			if(this.PlateToNotCirculation("5", "6"))
+			{
+				avaibleForRoad = this.HourToNotCirculation();				
+			}
 			break;
 
 		case 5:
-
+			if(this.PlateToNotCirculation("7", "8"))
+			{
+				avaibleForRoad = this.HourToNotCirculation();				
+			}
 			break;
-
+			
 		case 6:
-
+			if(this.PlateToNotCirculation("9", "0"))
+			{
+				avaibleForRoad = this.HourToNotCirculation();				
+			}
 			break;
 
 		default:
+			avaibleForRoad = true;
+			break;
+		}
+		return avaibleForRoad;
+	}
+	
+	public boolean HourToNotCirculation(){		
+		Date inputHour = time.getTime();
+		Date morningStarHour = MorningStartHour.getTime();
+		Date morningStopHour = MorningStopHour.getTime();
+		Date eveningStartHour = EveningStartHour.getTime();
+		Date eveningStopHour = EveningStopHour.getTime();
+		
+		
+		if((inputHour.getTime()>morningStarHour.getTime())&&(inputHour.getTime()<morningStopHour.getTime()))
+		{
+			return false;
+		}
+		else if((inputHour.getTime()>eveningStartHour.getTime())&&(inputHour.getTime()<eveningStopHour.getTime()))
+		{
+			return false;
+		}
+		else
+		{
 			return true;
 		}
-
-		System.out.println(calendar.get(Calendar.DAY_OF_WEEK));
-
-		return false;
+	}
+	
+	public boolean PlateToNotCirculation(String plateOne, String plateTwo){
+		if(vehicle.getPlate().substring(vehicle.getPlate().length()-1).equalsIgnoreCase(plateOne)||vehicle.getPlate().substring(vehicle.getPlate().length()-1).equalsIgnoreCase(plateTwo))
+		{
+			return true;			
+		}
+		else
+		{
+			return false;
+		}
 	}
 }
