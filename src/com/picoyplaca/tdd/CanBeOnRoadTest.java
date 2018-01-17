@@ -28,7 +28,7 @@ public class CanBeOnRoadTest {
 	
 	@Test
 	public void validatePredictor(){
-		assertTrue(new CanBeOnRoad(new Vehicle("pbc-1234"),"2018/01/15",new GregorianCalendar(0, 0, 0, 17, 30, 0)).Predictor());		
+		assertTrue(new CanBeOnRoad(new Vehicle("pbc-1235"),"2018/01/17",new GregorianCalendar(0, 0, 0, 20, 30, 0)).Predictor());		
 	}
 
 }
